@@ -1,0 +1,23 @@
+const { getAnySite } = require('awse')
+const { MessageEmbed, Message, CommandInteraction } = require('discord.js')
+module.exports = {
+    name: 'wallpaper',
+    description: 'get random wallpaper',
+    /**
+     * @param {Message} message
+     * @param {CommandInteraction} interaction
+     */
+    execute(message, interaction) {
+        getAnySite({
+            search: 'Naruto',
+            pages: 2,
+            minImages: 100
+        }).then(d => {
+            const wallEmbed = new MessageEmbed()
+            .setImage(d.sources.values)
+            .setFooter(`Requested by: ${message.author}`)
+
+            interaction.reply({embeds: [wallEmbed]})
+        })
+    }
+}

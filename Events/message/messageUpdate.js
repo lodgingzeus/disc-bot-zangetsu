@@ -1,4 +1,5 @@
 const { MessageEmbed, Message, WebhookClient } = require('discord.js')
+const { WebhookUrl } = require('../../structures/config.json')
 
 module.exports = {
     name: 'messageUpdate',
@@ -20,10 +21,10 @@ module.exports = {
         const log = new MessageEmbed()
         .setColor("DARK_GREEN")
         .setDescription(`A [message](${newMessage.url}) by ${newMessage.author} was **edited** in ${newMessage.channel}. \n
-        **Original**:\n ${Original} \n**Edited**:\n ${Edited}`)
+        **From**:\n ${Original} \n**To**:\n ${Edited}`)
         .setFooter(`Memeber: ${newMessage.author.tag} | ID: ${newMessage.author.id}`);
 
-        new WebhookClient({url: "https://discord.com/api/webhooks/950785291667525733/Xxi8ebzlU4xBr87nngqSxHIOx_R1VxSY8nBMlFi5UKpaf7OASK8EugmgEsAezk7YlvzN"})
+        new WebhookClient({url: WebhookUrl})
         .send({embeds: [log]}).catch(err => console.log(err))
     }
 }
