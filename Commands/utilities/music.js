@@ -1,20 +1,20 @@
 const { CommandInteraction, MessageEmbed, Client} = require('discord.js')
 
 module.exports = {
-    name: 'music',
+    name: "music",
     description: 'Play songs of your liking',
     options: [
         {
             name: "play",
             description: 'Play a song',
             type: "SUB_COMMAND",
-            options: [{ name:"Query", description: 'Provide a song name or link', type: 'STRING', required: true}]
+            options: [{ name:"query", description: 'Provide a song name or link', type: 'STRING', required: true}]
         },
         { 
             name: "volume",
             description: 'Set volume',
             type: "SUB_COMMAND",
-            options: [{ name:"Percent", description: '10 = 10%', type:"NUMBER", required: true}]
+            options: [{ name:"percent", description: '10 = 10%', type:"NUMBER", required: true}]
         },
         {
             name: 'settings',
@@ -48,7 +48,7 @@ module.exports = {
         try {
             switch(options.getSubcommand()){
                 case "play": {
-                    client.distube.playVoiceChannel( voiceChannel, options.getString("query"), { textChannel: channel, member: member});
+                    client.distube.play( voiceChannel, options.getString("query"), { textChannel: channel, member: member});
                     return interaction.reply({content: "Searching for song"})
                 }
                 case "volume": {
@@ -65,7 +65,7 @@ module.exports = {
 
                     switch(options.getString("options")) {
                         case "skip" : 
-                            await queue.skip(voiceCHannel);
+                            await queue.skip(voiceChannel);
                             return interaction.reply({ content: "Skipped current song"})
                         case "stop" :
                             await queue.stop(voiceChannel);

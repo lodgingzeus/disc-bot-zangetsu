@@ -4,6 +4,7 @@
   "description": "",
   "main": "./structures/index.js",
   "dependencies": {
+    "@discordjs/opus": "^0.7.0",
     "@distube/spotify": "^1.2.1",
     "anilist-node": "^1.9.1",
     "ascii-table": "^0.0.9",
